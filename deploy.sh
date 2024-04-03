@@ -10,5 +10,21 @@
 # Build the website locally
 bundle exec jekyll build
 
+# Move to the target folder
+# shellcheck disable=SC2164
+cd ../../tfaadcs.org/tfaadcs.github.io
+
+# Get new version
+git pull
+
 # Copy the content from _site to the local repository tfaadcs.github.io
-cp _site/* ../.
+cp -R ../../tfaadcs.org/tfaadcs.org-src/_site/* .
+
+# Add new files if so
+git add .
+
+# Commit
+git commit -m "automatic local deployment"
+
+# Push
+git push -u origin main
